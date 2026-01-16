@@ -1,4 +1,4 @@
-package br.com.dev.esteroliver.pratiler.service.a_domain.entities;
+package br.com.dev.esteroliver.pratiler.service.a_domain.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

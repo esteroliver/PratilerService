@@ -3,7 +3,7 @@ package br.com.dev.esteroliver.pratiler.service.a_domain.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.dev.esteroliver.pratiler.service.a_domain.entities.Usuario;
+import br.com.dev.esteroliver.pratiler.service.a_domain.model.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{

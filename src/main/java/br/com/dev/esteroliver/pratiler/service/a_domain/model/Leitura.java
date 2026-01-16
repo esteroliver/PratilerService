@@ -1,4 +1,4 @@
-package br.com.dev.esteroliver.pratiler.service.a_domain.entities;
+package br.com.dev.esteroliver.pratiler.service.a_domain.model;
 
 import br.com.dev.esteroliver.pratiler.service.a_domain.enums.StatusLeitura;
 import jakarta.persistence.*;
