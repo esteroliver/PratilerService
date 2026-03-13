@@ -6,9 +6,9 @@ import br.com.dev.esteroliver.pratiler.service.a_domain.model.Autor;
 import br.com.dev.esteroliver.pratiler.service.a_domain.model.Livro;
 import br.com.dev.esteroliver.pratiler.service.a_domain.repository.AutorRepository;
 import br.com.dev.esteroliver.pratiler.service.a_domain.repository.LivroRepository;
-import br.com.dev.esteroliver.pratiler.service.b_application.dto.LivroPostDTO;
-import br.com.dev.esteroliver.pratiler.service.b_application.dto.LivroResponseDTO;
-import br.com.dev.esteroliver.pratiler.service.b_application.dto.LivroSummaryResponseDTO;
+import br.com.dev.esteroliver.pratiler.service.b_application.dto.livro.LivroPostDTO;
+import br.com.dev.esteroliver.pratiler.service.b_application.dto.livro.LivroResponseDTO;
+import br.com.dev.esteroliver.pratiler.service.b_application.dto.livro.LivroSummaryResponseDTO;
 
 import java.util.List;
 import java.util.Optional;

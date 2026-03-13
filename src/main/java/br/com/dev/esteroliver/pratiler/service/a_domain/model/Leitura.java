@@ -9,16 +9,16 @@ import lombok.Data;
 @Table(name = "leitura" , schema = "social")
 public class Leitura {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status_leitura")
     private StatusLeitura statusLeitura;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     private Leitor leitor;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     private Livro livro;
 }

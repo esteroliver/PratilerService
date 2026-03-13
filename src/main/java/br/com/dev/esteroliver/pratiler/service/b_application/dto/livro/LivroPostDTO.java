@@ -1,4 +1,4 @@
-package br.com.dev.esteroliver.pratiler.service.b_application.dto;
+package br.com.dev.esteroliver.pratiler.service.b_application.dto.livro;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

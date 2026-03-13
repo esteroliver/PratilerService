@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Table(name = "comentario" , schema = "social")
 public class Comentario {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(name = "pagina_final")

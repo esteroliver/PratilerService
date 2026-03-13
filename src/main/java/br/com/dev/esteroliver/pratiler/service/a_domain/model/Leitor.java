@@ -8,14 +8,14 @@ import lombok.Data;
 @Table(schema = "pessoa" , name = "leitor")
 public class Leitor {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     private String nome;
 
     private String biografia;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     private Usuario usuario;
 
     //todo foto perfil
