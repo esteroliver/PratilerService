@@ -33,7 +33,7 @@ public class JwtTokenService {
         }
     }
 
-    private String verificarTokenUsuario(String token){
+    public String verificarTokenUsuario(String token){
         try{
             Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
             return JWT.require(algorithm)
