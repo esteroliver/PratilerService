@@ -1,5 +1,6 @@
 package br.com.dev.esteroliver.pratiler.service.a_domain.model;
 
+import br.com.dev.esteroliver.pratiler.service.a_domain.enums.PapelUsuario;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,4 +15,7 @@ public class Usuario {
     private String email;
 
     private String senha;
+
+    @Enumerated(EnumType.STRING)
+    private PapelUsuario papel;
 }
