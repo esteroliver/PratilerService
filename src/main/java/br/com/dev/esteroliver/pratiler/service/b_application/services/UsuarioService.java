@@ -6,6 +6,7 @@ import br.com.dev.esteroliver.pratiler.service.a_domain.repository.UsuarioReposi
 import br.com.dev.esteroliver.pratiler.service.b_application.dto.auth.JwtTokenDTO;
 import br.com.dev.esteroliver.pratiler.service.b_application.dto.auth.LoginUsuarioDTO;
 import br.com.dev.esteroliver.pratiler.service.b_application.dto.usuario.UsuarioPostDTO;
+import br.com.dev.esteroliver.pratiler.service.b_application.dto.usuario.UsuarioResponseDTO;
 import br.com.dev.esteroliver.pratiler.service.c_infra.security.JwtTokenService;
 import br.com.dev.esteroliver.pratiler.service.c_infra.security.SecurityConfiguration;
 import br.com.dev.esteroliver.pratiler.service.c_infra.security.UserDetailsImpl;

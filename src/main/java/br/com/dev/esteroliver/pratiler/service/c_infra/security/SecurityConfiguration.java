@@ -1,5 +1,6 @@
 package br.com.dev.esteroliver.pratiler.service.c_infra.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,18 +11,22 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
 
+    @Autowired
+    UserAuthFilter userAuthFilter;
+
     public static final String[] ENDPOINTS_PUBLICOS = {
-            "/usuarios/login",
-            "/usuarios"
+        "/usuarios/login",
+        "/usuarios"
     };
 
     public static final String[] ENDPOINTS_USUARIOS_LEITOR_ADM = {
-      "/usuarios/meus_dados"
+        "/usuarios/meus_dados"
     };
 
     public static final String[] ENDPOINTS_USUARIO_LEITOR = {
@@ -29,7 +34,7 @@ public class SecurityConfiguration {
     };
 
     public static final String[] ENDPOINTS_USUARIO_ADM= {
-            "/usuarios/teste_adm"
+        "/usuarios/teste_adm"
     };
 
     @Bean
@@ -38,9 +43,13 @@ public class SecurityConfiguration {
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(
                         (auth) -> auth
-                        .requestMatchers(ENDPOINTS_PUBLICOS).permitAll()
-                        .anyRequest().denyAll()
+                            .requestMatchers(ENDPOINTS_PUBLICOS).permitAll()
+                            .requestMatchers(ENDPOINTS_USUARIOS_LEITOR_ADM).authenticated()
+                            .requestMatchers(ENDPOINTS_USUARIO_LEITOR).hasRole("LEITOR")
+                            .requestMatchers(ENDPOINTS_USUARIO_ADM).hasRole("ADMINISTRADOR")
+                            .anyRequest().denyAll()
                 )
+                .addFilterBefore(userAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
