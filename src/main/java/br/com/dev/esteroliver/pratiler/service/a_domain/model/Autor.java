@@ -2,7 +2,7 @@ package br.com.dev.esteroliver.pratiler.service.a_domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.dev.esteroliver.pratiler.service.b_application.dto.LivroPostDTO;
+import br.com.dev.esteroliver.pratiler.service.b_application.dto.livro.LivroPostDTO;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

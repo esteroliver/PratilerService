@@ -1,4 +1,4 @@
-package br.com.dev.esteroliver.pratiler.service.b_application.dto;
+package br.com.dev.esteroliver.pratiler.service.b_application.dto.livro;
 
 import br.com.dev.esteroliver.pratiler.service.a_domain.model.Livro;
 
