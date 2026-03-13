@@ -20,7 +20,7 @@ public class Autor {
 
     private String nome;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "autor_id")
     @JsonIgnore
     private Set<Livro> livros;

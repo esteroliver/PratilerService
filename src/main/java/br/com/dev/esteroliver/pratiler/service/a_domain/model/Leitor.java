@@ -15,7 +15,7 @@ public class Leitor {
 
     private String biografia;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     private Usuario usuario;
 
     //todo foto perfil

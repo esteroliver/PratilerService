@@ -16,9 +16,9 @@ public class Leitura {
     @Column(name = "status_leitura")
     private StatusLeitura statusLeitura;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     private Leitor leitor;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     private Livro livro;
 }
