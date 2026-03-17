@@ -21,8 +21,8 @@ public class SecurityConfiguration {
     UserAuthFilter userAuthFilter;
 
     public static final String[] ENDPOINTS_PUBLICOS = {
-        "/usuarios/login",
-        "/usuarios"
+        "/auth/login",
+        "/usuarios/cadastro/leitor"
     };
 
     public static final String[] ENDPOINTS_USUARIOS_LEITOR_ADM = {
@@ -33,7 +33,7 @@ public class SecurityConfiguration {
         "/usuarios/teste_leitor"
     };
 
-    public static final String[] ENDPOINTS_USUARIO_ADM= {
+    public static final String[] ENDPOINTS_USUARIO_ADM = {
         "/usuarios/teste_adm"
     };
 
