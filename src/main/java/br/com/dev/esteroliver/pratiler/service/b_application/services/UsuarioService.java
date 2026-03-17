@@ -1,15 +1,17 @@
 package br.com.dev.esteroliver.pratiler.service.b_application.services;
 
 import br.com.dev.esteroliver.pratiler.service.a_domain.enums.PapelUsuario;
+import br.com.dev.esteroliver.pratiler.service.a_domain.model.Leitor;
 import br.com.dev.esteroliver.pratiler.service.a_domain.model.Usuario;
+import br.com.dev.esteroliver.pratiler.service.a_domain.repository.LeitorRepository;
 import br.com.dev.esteroliver.pratiler.service.a_domain.repository.UsuarioRepository;
 import br.com.dev.esteroliver.pratiler.service.b_application.dto.auth.JwtTokenDTO;
 import br.com.dev.esteroliver.pratiler.service.b_application.dto.auth.LoginUsuarioDTO;
-import br.com.dev.esteroliver.pratiler.service.b_application.dto.usuario.UsuarioPostDTO;
-import br.com.dev.esteroliver.pratiler.service.b_application.dto.usuario.UsuarioResponseDTO;
+import br.com.dev.esteroliver.pratiler.service.b_application.dto.leitor.LeitorPostDTO;
 import br.com.dev.esteroliver.pratiler.service.c_infra.security.JwtTokenService;
 import br.com.dev.esteroliver.pratiler.service.c_infra.security.SecurityConfiguration;
 import br.com.dev.esteroliver.pratiler.service.c_infra.security.UserDetailsImpl;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +20,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioService {
+
+    @Autowired
+    LeitorRepository leitorRepository;
 
     @Autowired
     UsuarioRepository usuarioRepository;
@@ -31,18 +36,27 @@ public class UsuarioService {
     @Autowired
     JwtTokenService jwtTokenService;
 
-    public void criarUsuario(UsuarioPostDTO usuarioPostDTO){
-        if(usuarioRepository.findByEmail(usuarioPostDTO.email()).isPresent()) {
+    @Transactional
+    public void criarUsuarioLeitor(LeitorPostDTO leitorPostDTO){
+        if(usuarioRepository.findByEmail(leitorPostDTO.email()).isPresent()) {
             throw new RuntimeException("E-mail indisponível.");
         }
 
         Usuario usuario = new Usuario();
 
-        usuario.setEmail(usuarioPostDTO.email());
-        usuario.setSenha(securityConfiguration.passwordEncoder().encode(usuarioPostDTO.senha()));
-        usuario.setPapel(usuarioPostDTO.papelUsuario());
+        usuario.setEmail(leitorPostDTO.email());
+        usuario.setSenha(securityConfiguration.passwordEncoder().encode(leitorPostDTO.senha()));
+        usuario.setPapel(PapelUsuario.LEITOR);
 
-        usuarioRepository.save(usuario);
+        usuario = usuarioRepository.save(usuario);
+
+        Leitor leitor = new Leitor();
+
+        leitor.setNome(leitorPostDTO.nome());
+        leitor.setBiografia(leitorPostDTO.biografia());
+        leitor.setUsuario(usuario);
+
+        leitorRepository.save(leitor);
     }
 
     public JwtTokenDTO autenticarUsuario(LoginUsuarioDTO loginUsuarioDTO){

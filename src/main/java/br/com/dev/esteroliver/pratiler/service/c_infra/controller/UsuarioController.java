@@ -2,7 +2,7 @@ package br.com.dev.esteroliver.pratiler.service.c_infra.controller;
 
 import br.com.dev.esteroliver.pratiler.service.b_application.dto.auth.JwtTokenDTO;
 import br.com.dev.esteroliver.pratiler.service.b_application.dto.auth.LoginUsuarioDTO;
-import br.com.dev.esteroliver.pratiler.service.b_application.dto.usuario.UsuarioPostDTO;
+import br.com.dev.esteroliver.pratiler.service.b_application.dto.leitor.LeitorPostDTO;
 import br.com.dev.esteroliver.pratiler.service.b_application.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,9 +22,9 @@ public class UsuarioController {
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Void> criarUsuario(@RequestBody UsuarioPostDTO usuarioPostDTO){
-        usuarioService.criarUsuario(usuarioPostDTO);
+    @PostMapping("/leitor")
+    public ResponseEntity<Void> criarUsuarioLeitor(@RequestBody LeitorPostDTO leitorPostDTO){
+        usuarioService.criarUsuarioLeitor(leitorPostDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
