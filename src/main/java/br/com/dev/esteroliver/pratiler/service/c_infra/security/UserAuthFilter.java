@@ -44,9 +44,6 @@ public class UserAuthFilter extends OncePerRequestFilter {
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
-            else {
-                throw new RuntimeException("Token ausente");
-            }
         }
 
         filterChain.doFilter(request, response);
@@ -62,6 +59,6 @@ public class UserAuthFilter extends OncePerRequestFilter {
 
     private boolean verificarEndpointPublico(HttpServletRequest request){
         String requestUri = request.getRequestURI();
-        return Arrays.asList(SecurityConfiguration.ENDPOINTS_PUBLICOS).contains(requestUri);
+        return Arrays.stream(SecurityConfiguration.ENDPOINTS_PUBLICOS).anyMatch(requestUri::contains);
     }
 }

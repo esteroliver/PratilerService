@@ -13,6 +13,8 @@ public class Leitor {
 
     private String nome;
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String biografia;
 
     @OneToOne

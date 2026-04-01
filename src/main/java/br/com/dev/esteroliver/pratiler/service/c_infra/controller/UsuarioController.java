@@ -16,8 +16,12 @@ public class UsuarioController {
 
     @PostMapping("/cadastro/leitor")
     public ResponseEntity<Void> cadastrarUsuarioLeitor(@RequestBody LeitorPostDTO leitorPostDTO){
-        usuarioService.cadastrarUsuarioLeitor(leitorPostDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        try{
+            usuarioService.cadastrarUsuarioLeitor(leitorPostDTO);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
     
 }

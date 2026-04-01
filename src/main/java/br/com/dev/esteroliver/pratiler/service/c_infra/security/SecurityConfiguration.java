@@ -1,5 +1,7 @@
 package br.com.dev.esteroliver.pratiler.service.c_infra.security;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -21,7 +26,7 @@ public class SecurityConfiguration {
     UserAuthFilter userAuthFilter;
 
     public static final String[] ENDPOINTS_PUBLICOS = {
-        "/auth/login",
+        "/auth/**",
         "/usuarios/cadastro/leitor"
     };
 
@@ -43,13 +48,14 @@ public class SecurityConfiguration {
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(
                         (auth) -> auth
-                            .requestMatchers(ENDPOINTS_PUBLICOS).permitAll()
                             .requestMatchers(ENDPOINTS_USUARIOS_LEITOR_ADM).authenticated()
                             .requestMatchers(ENDPOINTS_USUARIO_LEITOR).hasRole("LEITOR")
                             .requestMatchers(ENDPOINTS_USUARIO_ADM).hasRole("ADMINISTRADOR")
-                            .anyRequest().denyAll()
+                            .requestMatchers(ENDPOINTS_PUBLICOS).permitAll()
+                            .anyRequest().authenticated()
                 )
                 .addFilterBefore(userAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .cors((cors) -> cors.configurationSource(corsConfigurationSource()))
                 .build();
     }
 
@@ -61,5 +67,20 @@ public class SecurityConfiguration {
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource(){
+        CorsConfiguration conf = new CorsConfiguration();
+
+        conf.setAllowedOrigins(List.of("http://localhost:4200"));
+        conf.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        conf.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        conf.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", conf);
+
+        return source;  
     }
 }
