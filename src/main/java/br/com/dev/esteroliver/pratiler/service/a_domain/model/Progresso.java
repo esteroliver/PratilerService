@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "comentario" , schema = "social")
-public class Comentario {
+@Table(name = "progresso" , schema = "social")
+public class Progresso {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -19,8 +19,11 @@ public class Comentario {
     @Column(name = "data_hora")
     private LocalDateTime dataHora;
 
-    private String conteudo;
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String comentario;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "leitura_id")
     private Leitura leitura;
 }

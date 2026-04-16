@@ -16,9 +16,11 @@ public class Leitura {
     @Column(name = "status_leitura")
     private StatusLeitura statusLeitura;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "leitor_id")
     private Leitor leitor;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "livro_id")
     private Livro livro;
 }

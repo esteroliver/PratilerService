@@ -11,10 +11,14 @@ public class Avaliacao {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Column(columnDefinition = "SMALLINT")
     private Integer nota;
 
-    private String conteudo;
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String comentario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "leitura_id")
     private Leitura leitura;
 }
