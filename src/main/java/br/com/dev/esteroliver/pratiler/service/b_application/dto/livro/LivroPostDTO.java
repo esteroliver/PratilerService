@@ -13,6 +13,7 @@ public record LivroPostDTO(
     @NotBlank(message = "ISBN é obrigatório")
     String isbn,
 
+    @NotBlank(message = "Sinopse é obrigatória")
     String sinopse,
     
     @NotBlank(message = "Nome do autor é obrigatório")

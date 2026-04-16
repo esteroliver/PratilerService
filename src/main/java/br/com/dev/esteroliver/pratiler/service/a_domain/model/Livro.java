@@ -14,21 +14,26 @@ public class Livro {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Column(nullable = false)
     private String titulo;
 
-    @Column(name="num_paginas")
+    @Column(name="num_paginas", nullable = false)
     private Integer numPaginas;
 
+    @Column(nullable = false, unique = true)
     private String isbn;
 
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String sinopse;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "autor_id", nullable = false)
     private Autor autor;
 
     public Livro(LivroPostDTO dto){
         titulo = dto.titulo();
         numPaginas = dto.numPaginas();
         sinopse = dto.sinopse();
+        isbn = dto.isbn();
     }
 }
