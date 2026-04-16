@@ -7,20 +7,23 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "comentario" , schema = "social")
-public class Comentario {
+@Table(name = "progresso" , schema = "social")
+public class Progresso {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "pagina_final")
+    @Column(name = "pagina_final", nullable = false)
     private Integer paginaFinal;
 
-    @Column(name = "data_hora")
+    @Column(name = "data_hora", nullable = false)
     private LocalDateTime dataHora;
 
-    private String conteudo;
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String comentario;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "leitura_id", nullable = false)
     private Leitura leitura;
 }
