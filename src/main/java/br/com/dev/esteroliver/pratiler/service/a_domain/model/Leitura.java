@@ -13,14 +13,14 @@ public class Leitura {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status_leitura")
+    @Column(name = "status_leitura", nullable = false)
     private StatusLeitura statusLeitura;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "leitor_id")
+    @JoinColumn(name = "leitor_id", nullable = false)
     private Leitor leitor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "livro_id")
+    @JoinColumn(name = "livro_id", nullable = false)
     private Livro livro;
 }

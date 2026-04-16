@@ -23,6 +23,7 @@ public class Livro {
     @Column(nullable = false, unique = true)
     private String isbn;
 
+    @Lob
     @Column(columnDefinition = "TEXT", nullable = false)
     private String sinopse;
 

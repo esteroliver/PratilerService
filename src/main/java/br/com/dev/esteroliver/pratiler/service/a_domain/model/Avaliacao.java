@@ -11,7 +11,7 @@ public class Avaliacao {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(columnDefinition = "SMALLINT")
+    @Column(columnDefinition = "SMALLINT", nullable = false)
     private Integer nota;
 
     @Lob
@@ -19,6 +19,6 @@ public class Avaliacao {
     private String comentario;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "leitura_id")
+    @JoinColumn(name = "leitura_id", nullable = false)
     private Leitura leitura;
 }

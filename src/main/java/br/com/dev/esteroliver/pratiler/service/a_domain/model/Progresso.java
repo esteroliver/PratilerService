@@ -13,10 +13,10 @@ public class Progresso {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "pagina_final")
+    @Column(name = "pagina_final", nullable = false)
     private Integer paginaFinal;
 
-    @Column(name = "data_hora")
+    @Column(name = "data_hora", nullable = false)
     private LocalDateTime dataHora;
 
     @Lob
@@ -24,6 +24,6 @@ public class Progresso {
     private String comentario;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "leitura_id")
+    @JoinColumn(name = "leitura_id", nullable = false)
     private Leitura leitura;
 }
