@@ -1,0 +1,23 @@
+spring:
+    application:
+        name: pratiler.service
+    datasource:
+        url: jdbc:postgresql://localhost:5432/db_pratiler
+        username: postgres
+        password: postgres
+        driver-class-name: org.postgresql.Driver
+    jpa:
+        hibernate:
+            ddl-auto: update
+
+    flyway:
+        user: postgres
+        password: postgres
+        url: jdbc:postgresql://localhost:5432/db_pratiler
+        schemas: public
+        baseline-on-migrate: true
+
+logging:
+    level:
+        org.flywaydb: INFO
+

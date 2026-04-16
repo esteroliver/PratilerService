@@ -2,7 +2,7 @@ CREATE SCHEMA social;
 
 CREATE TABLE social.leitura(
     id BIGINT PRIMARY KEY ,
-    leitor_id BIGINT NOT NULL REFERENCES pessoa.leitor(id) ,
+    leitor_id BIGINT NOT NULL REFERENCES usuario.leitor(id) ,
     livro_id BIGINT NOT NULL REFERENCES biblioteca.livro(id) ,
     status_leitura VARCHAR NOT NULL
 );

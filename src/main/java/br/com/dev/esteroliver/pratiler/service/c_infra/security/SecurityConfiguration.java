@@ -27,19 +27,17 @@ public class SecurityConfiguration {
 
     public static final String[] ENDPOINTS_PUBLICOS = {
         "/auth/**",
-        "/usuarios/cadastro/leitor"
+        "/usuarios/cadastro/leitor",
+        "/swagger-ui/**"
     };
 
     public static final String[] ENDPOINTS_USUARIOS_LEITOR_ADM = {
-        "/usuarios/meus_dados"
     };
 
     public static final String[] ENDPOINTS_USUARIO_LEITOR = {
-        "/usuarios/teste_leitor"
     };
 
     public static final String[] ENDPOINTS_USUARIO_ADM = {
-        "/usuarios/teste_adm"
     };
 
     @Bean
@@ -52,7 +50,7 @@ public class SecurityConfiguration {
                             .requestMatchers(ENDPOINTS_USUARIO_LEITOR).hasRole("LEITOR")
                             .requestMatchers(ENDPOINTS_USUARIO_ADM).hasRole("ADMINISTRADOR")
                             .requestMatchers(ENDPOINTS_PUBLICOS).permitAll()
-                            .anyRequest().authenticated()
+                            .anyRequest().permitAll()
                 )
                 .addFilterBefore(userAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .cors((cors) -> cors.configurationSource(corsConfigurationSource()))
